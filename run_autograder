@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+AUTOGRADER_SRC=/autograder/classwork12_autograder
+
+# Hide output from students so as not to confuse them
+eval `ssh-agent` > /dev/null
+ssh-add ~/.ssh/deploy_key 2> /dev/null
+
+cd /autograder/gradescope_utils
+git pull --quiet
+
+cd $AUTOGRADER_SRC
+git pull --quiet
+
+# Find the README file, and assume this is the base path of the submission
+# If we find more than one thing called README, fail and inform the student
+count=`find /autograder/submission -name README.md | wc -l`
+if [[ $count != 1 ]]; then
+  echo "You have more than one README in your submission.  Please remove the duplicate README files and resubmit." > /autograder/results/results.json
+  exit
+fi
+
+README_PATH=`find /autograder/submission -name README.md`
+SUBMISSION_DIR=`dirname $README_PATH`
+
+cp -r $SUBMISSION_DIR/* /autograder/build/
+
+if [[ ! -e $SUBMISSION_DIR/array ]]; then
+  echo "Could not find the 'array' directory in your submission.  Make sure your README is in the root of your submission and that the directory exists." > /autograder/results/results.json
+  exit
+fi
+
+cp $AUTOGRADER_SRC/test_makefile /autograder/build/array
+
+python3 run_tests.py > /autograder/results/results.json
