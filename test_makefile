@@ -1,21 +1,25 @@
 CC := g++
 CFLAGS := -Wall
 SUBSRC := /autograder/build/array
-TESTSRC := /autograder/classwork12_autograder/cpp_test_wrappers
-
-# Check whether the student submitted a cpp file, or included all their code in
-# the header file.  If the former, we need to compile it.
-STUDENTCPP := $(wildcard $SUBSRC/array.cpp)
+TESTSRC := /autograder/classwork13_autograder/cpp_test_wrappers
 
 student_test:
-	$(CC) $(STUDENTCPP) test_array.cpp -o student_test
+	$(CC) array.cpp test_array.cpp -o student_test
 
-template_test_int:
-	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_INT $(STUDENTCPP) $(TESTSRC)/template_test.cpp -o template_test_int
+# Small test programs which ensure that particular functions exist
 
-template_test_class:
-	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_CLASS $(STUDENTCPP) $(TESTSRC)/template_test.cpp -o template_test_class
+build_exception:
+	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/build_exception.cpp -o build_exception
 
-template_test_intptr:
-	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_INTPTR $(STUDENTCPP) $(TESTSRC)/template_test.cpp -o template_test_intptr
+test_outofbounds:
+	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_outofbounds.cpp -o test_outofbounds
+
+test_fail_during_append:
+	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_fail_during_append.cpp -o test_fail_during_append
+
+test_fail_during_append_array:
+	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_fail_during_append_array.cpp -o test_fail_during_append_array
+
+test_fail_during_assignment:
+	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_fail_during_assignment.cpp -o test_fail_during_assignment
 

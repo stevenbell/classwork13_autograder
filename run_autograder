@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-AUTOGRADER_SRC=/autograder/classwork12_autograder
+AUTOGRADER_SRC=/autograder/classwork13_autograder
 
 # Hide output from students so as not to confuse them
 eval `ssh-agent` > /dev/null

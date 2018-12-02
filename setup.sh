@@ -17,7 +17,7 @@ ssh-add deploy_key > /dev/null
 ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
 # Clone autograder files
-git clone --quiet git@github.com:stevenbell/classwork12_autograder /autograder/classwork12_autograder
+git clone --quiet git@github.com:ah7149407/classwork13_autograder /autograder/classwork13_autograder
 
 # Close gradescope_util files
 git clone --quiet git@github.com:ah7149407/gradescope-utils /autograder/gradescope_utils

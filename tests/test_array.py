@@ -38,7 +38,7 @@ def run_valgrind(test, target):
 
   print("Valgrind clean!")
 
- 
+
 class TestArrays(unittest.TestCase):
     longMessage = False # Override default error messages
 
@@ -48,7 +48,7 @@ class TestArrays(unittest.TestCase):
     @number('1')
     def test01_submitted_files(self):
         """Check submitted files"""
-        missing_files = check_submitted_files([ \
+        missing_files = check_submitted_files([wdir + 'array.cpp',
           wdir + 'array.h',
           wdir + 'test_array.cpp'])
         for path in missing_files:
@@ -68,50 +68,75 @@ class TestArrays(unittest.TestCase):
         test_build(self, "student_test")
 
     @weight(1)
-    @visibility('visible') # Always visible, they should get one for free
+    @visibility('visible')
     @number('3')
-    def test03_buildint(self): 
-        """Compile with <int>"""
-        test_build(self, "template_test_int")
+    def test03_exception(self): 
+        """Compile exception"""
+        test_build(self, "test_outofbounds")
 
-    @weight(1)
-    @visibility('after_published')
+    # Test functionality of student code
+    # Also test for memory leaks where appropriate
+    @weight(5)
+    @visibility('visible')
     @number('4')
-    def test04_runint(self):
-        """Run test with <int>"""
-        result = safe_run(self, wdir + 'template_test_int')
+    def test04_outofbounds(self): 
+        """test out of bounds exception"""
+        test_build(self, "test_outofbounds")
+        result = safe_run(self, wdir + 'test_outofbounds')
         result = findString(result)
         self.assertEqual(result, "PASS", result)
-
-    @weight(1)
-    @visibility('after_published')
+        print("Test passed!")
+    
+    @weight(5)
+    @visibility('visible')
     @number('5')
-    def test05_buildclass(self): 
-        """Compile with <CustomClass>"""
-        test_build(self, "template_test_class")
+    def test05_fail_during_append(self): 
+        """malloc/new fails during append()"""
+        test_build(self, "test_fail_during_append")
+        result = safe_run(self, wdir + 'test_fail_during_append')
+        result = findString(result)
+        self.assertEqual(result, "PASS", result)
+        print("Test passed!")
 
-    @weight(1)
-    @visibility('after_published')
+    @weight(3)
+    @visibility('visible')
     @number('6')
-    def test06_runint(self):
-        """Run test with <CustomClass>"""
-        result = safe_run(self, wdir + 'template_test_class')
-        result = findString(result)
-        self.assertEqual(result, "PASS", result)
-
-    @weight(1)
-    @visibility('after_published')
+    def test06_fail_during_append_valgrind(self): 
+        """Test with valgrind"""
+        run_valgrind(self, 'test_fail_during_append')
+    
+    @weight(5)
+    @visibility('visible')
     @number('7')
-    def test07_buildintptr(self): 
-        """Compile with <int*>"""
-        test_build(self, "template_test_intptr")
-
-    @weight(1)
-    @visibility('after_published')
-    @number('8')
-    def test08_runint(self):
-        """Run test with <int*>"""
-        result = safe_run(self, wdir + 'template_test_intptr')
+    def test07_fail_during_append_array(self): 
+        """malloc/new fails during append(array)"""
+        test_build(self, "test_fail_during_append_array")
+        result = safe_run(self, wdir + 'test_fail_during_append_array')
         result = findString(result)
         self.assertEqual(result, "PASS", result)
+        print("Test passed!")
+
+    @weight(3)
+    @visibility('visible')
+    @number('8')
+    def test08_fail_during_append_array_valigrind(self): 
+        """Test with valgrind"""
+        run_valgrind(self, 'test_fail_during_append_array')
+    
+    @weight(5)
+    @visibility('visible')
+    @number('9')
+    def test09_fail_during_assignment(self): 
+        """Test malloc/new fails during assignment"""
+        test_build(self, "test_fail_during_assignment")
+        result = safe_run(self, wdir + 'test_fail_during_assignment')
+        result = findString(result)
+        self.assertEqual(result, "PASS", result)
+
+    @weight(3)
+    @visibility('visible')
+    @number('10')
+    def test10_fail_during_assignment_valgrind(self): 
+        """Test with valgrind"""
+        run_valgrind(self, 'test_fail_during_assignment')
 
