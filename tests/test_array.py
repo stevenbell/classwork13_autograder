@@ -77,7 +77,7 @@ class TestArrays(unittest.TestCase):
     # Test functionality of student code
     # Also test for memory leaks where appropriate
     @weight(5)
-    @visibility('visible')
+    @visibility('after_published')
     @number('4')
     def test04_outofbounds(self): 
         """test out of bounds exception"""
@@ -88,7 +88,7 @@ class TestArrays(unittest.TestCase):
         print("Test passed!")
     
     @weight(5)
-    @visibility('visible')
+    @visibility('after_published')
     @number('5')
     def test05_fail_during_append(self): 
         """malloc/new fails during append()"""
@@ -99,14 +99,14 @@ class TestArrays(unittest.TestCase):
         print("Test passed!")
 
     @weight(3)
-    @visibility('visible')
+    @visibility('after_published')
     @number('6')
     def test06_fail_during_append_valgrind(self): 
         """Test with valgrind"""
         run_valgrind(self, 'test_fail_during_append')
     
     @weight(5)
-    @visibility('visible')
+    @visibility('after_published')
     @number('7')
     def test07_fail_during_append_array(self): 
         """malloc/new fails during append(array)"""
@@ -117,14 +117,14 @@ class TestArrays(unittest.TestCase):
         print("Test passed!")
 
     @weight(3)
-    @visibility('visible')
+    @visibility('after_published')
     @number('8')
     def test08_fail_during_append_array_valigrind(self): 
         """Test with valgrind"""
         run_valgrind(self, 'test_fail_during_append_array')
     
     @weight(5)
-    @visibility('visible')
+    @visibility('after_published')
     @number('9')
     def test09_fail_during_assignment(self): 
         """Test malloc/new fails during assignment"""
@@ -134,7 +134,7 @@ class TestArrays(unittest.TestCase):
         self.assertEqual(result, "PASS", result)
 
     @weight(3)
-    @visibility('visible')
+    @visibility('after_published')
     @number('10')
     def test10_fail_during_assignment_valgrind(self): 
         """Test with valgrind"""
