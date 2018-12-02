@@ -26,7 +26,7 @@ void operator delete(void* block)
 
 int main(int argc, char* argv[])
 {
-    Array a(5, 0);
+    Array<int> a(5, 0);
     try {
           std::cout << a[10] << std::endl;
           std::cout << "Index is out of bounds -- should throw exception" << std::endl;
