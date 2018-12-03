@@ -32,12 +32,12 @@ int main(int argc, char* argv[])
           std::cout << "###Index is out of bounds -- should throw exception###" << std::endl;
     }
     catch (const std::exception& e){
-          
-          if ((e.what()).find("out of bounds") != std::string::npos) {
+          std::string result = e.what(); 
+          if (result.find("out of bounds") != std::string::npos) {
               std::cout << "###PASS###" << std::endl;
           }
           else
-              std::cout << "### " << e.what() << " does not contain 'out of bounds'" << std::endl;
+              std::cout << "### " << result << " does not contain 'out of bounds'" << std::endl;
           }   
     }
     return(0);
