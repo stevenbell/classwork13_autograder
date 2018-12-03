@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
               std::cout << result << " does not contain 'out of bounds'" << std::endl;
           }   
     }
-    std::cout << "Program likely crashed" << std::end;
+    std::cout << "Program likely crashed" << std::endl;
     return(0);
 }
 
