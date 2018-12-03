@@ -27,8 +27,8 @@ void operator delete(void* block)
 
 int main(int argc, char* argv[])
 {
-    memoryAllocFail = true;
     Array<int> a(5, 0);
+    memoryAllocFail = true;
     a.append(1);
      
     if(a.size() != 5){
