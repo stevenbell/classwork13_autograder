@@ -39,8 +39,10 @@ int main(int argc, char* argv[])
     for(int i = 0; i < a.size(); i++){
         if(a[i] != 0){
             printf("###Couldn't access value %d###", i);
+            return(0);
         }
     }   
 
+    printf("###PASS###");
 }
 
