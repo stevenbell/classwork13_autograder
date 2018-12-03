@@ -29,10 +29,13 @@ int main(int argc, char* argv[])
     Array<int> a(5, 0);
     try {
           std::cout << a[10] << std::endl;
-          std::cout << "Index is out of bounds -- should throw exception" << std::endl;
+          std::cout << "###Index is out of bounds -- should throw exception###" << std::endl;
     }
     catch (const std::exception& e){
-          std::cout << e.what() << std::endl;
+          
+          if (e.what().find("out of bounds") != std::string::npos) {
+              std::cout << "###PASS###" << std::endl;
+          }
     }
     return(0);
 }
