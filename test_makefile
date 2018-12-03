@@ -3,8 +3,10 @@ CFLAGS := -Wall
 SUBSRC := /autograder/build/array
 TESTSRC := /autograder/classwork13_autograder/cpp_test_wrappers
 
+STUDENTCPP := $(wildcard $SUBSRC/array.cpp)
+
 student_test:
-	$(CC) array.cpp test_array.cpp -o student_test
+	$(CC) test_array.cpp -o student_test
 
 # Small test programs which ensure that particular functions exist
 
