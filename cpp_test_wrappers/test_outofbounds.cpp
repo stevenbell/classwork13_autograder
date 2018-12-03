@@ -33,9 +33,12 @@ int main(int argc, char* argv[])
     }
     catch (const std::exception& e){
           
-          if (e.what().find("out of bounds") != std::string::npos) {
+          if (std::to_string(e.what()).find("out of bounds") != std::string::npos) {
               std::cout << "###PASS###" << std::endl;
           }
+          else
+              std::cout << "###" << to_string(e.what()) << " does not contain 'out of bounds'" << std::endl;
+          }   
     }
     return(0);
 }
