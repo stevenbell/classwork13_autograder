@@ -10,18 +10,15 @@ student_test:
 
 # Small test programs which ensure that particular functions exist
 
-build_exception:
-	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/build_exception.cpp -o build_exception
-
 test_outofbounds:
-	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_outofbounds.cpp -o test_outofbounds
+	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_INT $(STUDENTCPP) $(TESTSRC)/test_outofbounds.cpp -o test_outofbounds
 
 test_fail_during_append:
-	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_fail_during_append.cpp -o test_fail_during_append
+	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_INT $(STUDENTCPP) $(TESTSRC)/test_fail_during_append.cpp -o test_fail_during_append
 
 test_fail_during_append_array:
-	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_fail_during_append_array.cpp -o test_fail_during_append_array
+	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_INT $(STUDENTCPP) $(TESTSRC)/test_fail_during_append_array.cpp -o test_fail_during_append_array
 
 test_fail_during_assignment:
-	$(CC) $(CFLAGS) -I$(SUBSRC) array.cpp $(TESTSRC)/test_fail_during_assignment.cpp -o test_fail_during_assignment
+	$(CC) $(CFLAGS) -I$(SUBSRC) -DTEMPLATE_TYPE_INT $(STUDENTCPP) $(TESTSRC)/test_fail_during_assignment.cpp -o test_fail_during_assignment
 
