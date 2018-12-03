@@ -48,9 +48,7 @@ class TestArrays(unittest.TestCase):
     @number('1')
     def test01_submitted_files(self):
         """Check submitted files"""
-        missing_files = check_submitted_files([wdir + 'array.cpp',
-          wdir + 'array.h',
-          wdir + 'test_array.cpp'])
+        missing_files = check_submitted_files([wdir + 'array.h', wdir + 'test_array.cpp'])
         for path in missing_files:
             print('Missing {0}'.format(path))
         self.assertEqual(len(missing_files), 0, 'Missing some required files for problem 1!')
