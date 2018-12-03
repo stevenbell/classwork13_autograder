@@ -28,18 +28,20 @@ int main(int argc, char* argv[])
 {
     Array<int> a(5, 0);
     try {
+          std::cout << "Trying to index out of bounds" << std::endl;
           std::cout << a[10] << std::endl;
           std::cout << "###Index is out of bounds -- should throw exception###" << std::endl;
     }
     catch (const std::exception& e){
           std::string result = e.what(); 
-          if (result.find("out of bounds") != std::string::npos) {
+          if ((result.find("out of bound") != std::string::npos) || (result.find("Out of Bound") != std::string::npos)) {
               std::cout << "###PASS###" << std::endl;
           }
           else{
-              std::cout << "### " << result << " does not contain 'out of bounds'" << std::endl;
+              std::cout << result << " does not contain 'out of bounds'" << std::endl;
           }   
     }
+    std::cout << "Program likely crashed" << std::end;
     return(0);
 }
 
