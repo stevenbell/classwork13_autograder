@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
           if (result.find("out of bounds") != std::string::npos) {
               std::cout << "###PASS###" << std::endl;
           }
-          else
+          else{
               std::cout << "### " << result << " does not contain 'out of bounds'" << std::endl;
           }   
     }
