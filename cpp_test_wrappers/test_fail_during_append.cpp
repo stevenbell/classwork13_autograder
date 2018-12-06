@@ -29,7 +29,10 @@ int main(int argc, char* argv[])
 {
     Array<int> a(5, 0);
     memoryAllocFail = true;
-    a.append(1);
+    try {
+          a.append(1);
+    }
+    catch (const std::exception& e){}
      
     if(a.size() != 5){
         printf("###Expected size of %d but got %d###", 5, a.size());

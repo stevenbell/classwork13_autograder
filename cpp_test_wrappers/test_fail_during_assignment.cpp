@@ -30,7 +30,10 @@ int main(int argc, char* argv[])
     Array<int> a(5, 0);
     Array<int> b(10, 1);
     memoryAllocFail = true;
-    a = b;
+    try {
+        a = b;
+    }
+    catch (const std::exception& e){}
      
     if(a.size() != 5){
         printf("###Expected size of %d but got %d###", 5, a.size());
