@@ -1,2 +1,4 @@
-deploy_key*
+*.swp
+*.pyc
 *.zip
+deploy_key*

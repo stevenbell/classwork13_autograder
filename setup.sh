@@ -2,7 +2,7 @@
 
 cd /autograder/source
 
-apt-get install -y python python-pip python-dev valgrind
+apt-get install -y python build-essential valgrind
 
 mkdir -p /autograder/build
 
@@ -17,9 +17,8 @@ ssh-add deploy_key > /dev/null
 ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
 
 # Clone autograder files
-git clone --quiet git@github.com:ah7149407/classwork13_autograder /autograder/classwork13_autograder
+git clone --quiet git@github.com:stevenbell/classwork13_autograder /autograder/classwork13_autograder
 
 # Close gradescope_util files
-git clone --quiet git@github.com:ah7149407/gradescope-utils /autograder/gradescope_utils
+git clone --quiet git@github.com:stevenbell/gradescope-utils /autograder/gradescope_utils
 
-pip install -r /autograder/source/requirements.txt
