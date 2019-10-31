@@ -5,9 +5,6 @@ from files import check_submitted_files
 from decorators import weight
 from decorators import visibility
 from decorators import number
-import subprocess as sp
-import os.path
-import time
 from ee200utils import *
 
 wdir = '/autograder/build/array/'
@@ -52,7 +49,7 @@ class TestArrays(unittest.TestCase):
         test_build(self, "test_outofbounds", wdir)
         result = safe_run(self, wdir + 'test_outofbounds')
         result = findString(result)
-        self.assertEqual(result, "PASS", result)
+        self.assertIn("out of bound", result.lower(), "Program result was '{}'".format(result))
         print("Test passed!")
     
     @weight(5)

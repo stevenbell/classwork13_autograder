@@ -27,7 +27,10 @@ void operator delete(void* block)
 
 int main(int argc, char* argv[])
 {
-    Array<int> a(5, 0);
+    const int MAGIC = 100;
+    const int LENGTH = 5;
+
+    Array<int> a(LENGTH, MAGIC);
     Array<int> b(10, 0);
     memoryAllocFail = true;
     
@@ -36,17 +39,17 @@ int main(int argc, char* argv[])
     }
     catch (const std::exception& e){}
      
-    if(a.size() != 5){
-        printf("###Expected size of %d but got %d###", 5, a.size());
+    if(a.size() != LENGTH){
+        printf("###Size of array changed despite exception! Expected size of %d but got %d###", LENGTH, a.size());
         return(0);
     }
 
     for(int i = 0; i < a.size(); i++){
-        if(a[i] != 0){
-            printf("###Couldn't access value %d###", i);
+        if(a[i] != MAGIC){
+            printf("###Value at %d was modified despite exception!###", i);
             return(0);
         }
-    }   
+    }
 
     printf("###PASS###");
 }
