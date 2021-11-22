@@ -18,6 +18,8 @@ class TestArrays(unittest.TestCase):
     @number('1')
     def test01_submitted_files(self):
         """Check submitted files"""
+        # Since there are two test files, students might not submit both
+        # Allow either one to count
         missing_files = check_submitted_files([wdir + 'array.h', wdir + 'test_array.cpp'])
         for path in missing_files:
             print('Missing {0}'.format(path))
@@ -39,6 +41,11 @@ class TestArrays(unittest.TestCase):
     def test03_exception(self): 
         """Compile exception"""
         test_build(self, "test_outofbounds", wdir)
+
+    # TODO: consider writing a torture test which runs a program repeatedly
+    # each time failing after an increasing number of allocations.
+    # This will catch any errors where memory is allocated multiple times but
+    # only handled safely once.
 
     # Test functionality of student code
     # Also test for memory leaks where appropriate
@@ -66,7 +73,7 @@ class TestArrays(unittest.TestCase):
     @number('6')
     def test06_fail_during_append_valgrind(self): 
         """Test with valgrind"""
-        run_valgrind(self, 'test_fail_during_append', wdir)
+        run_valgrind(self, wdir + 'test_fail_during_append')
     
     @weight(5)
     @number('7')
@@ -82,7 +89,7 @@ class TestArrays(unittest.TestCase):
     @number('8')
     def test08_fail_during_append_array_valgrind(self): 
         """Test with valgrind"""
-        run_valgrind(self, 'test_fail_during_append_array', wdir)
+        run_valgrind(self, wdir + 'test_fail_during_append_array')
     
     @weight(5)
     @number('9')
@@ -97,5 +104,5 @@ class TestArrays(unittest.TestCase):
     @number('10')
     def test10_fail_during_assignment_valgrind(self): 
         """Test with valgrind"""
-        run_valgrind(self, 'test_fail_during_assignment', wdir)
+        run_valgrind(self, wdir + 'test_fail_during_assignment')
 
